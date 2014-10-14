@@ -1,0 +1,6 @@
+development:
+  sessions:
+    default:
+      database: missionboard
+      hosts:
+        - localhost:27017
