@@ -22,7 +22,7 @@ post '/missions/' do
     category: params[:category],
     description: params[:description],
     completed: params[:completed],
-    createdAt: params[:createdAt])
+    createdAt: Time.at(Integer(params[:createdAt]) / 1000)
   )
   "mission #{m.id} created"
 end
