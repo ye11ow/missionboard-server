@@ -34,7 +34,13 @@ end
 #end
 
 put '/missions/:id' do
+  Mission.find(params[:id]).set(current: Integer(params[:current]))
   "mission #{params[:id]} updated"
+end
+
+put '/missions/:id/doit' do
+  Mission.find(params[:id]).set(current: Integer(params[:current]))
+  "mission #{params[:id]} doit"
 end
 
 delete '/missions/:id' do
