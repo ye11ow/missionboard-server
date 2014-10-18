@@ -17,8 +17,8 @@ end
 post '/missions/' do
   m = Mission.create(
     title: params[:title],
-    current: params[:current],
-    total: params[:total],
+    current: Integer(params[:current]),
+    total: Integer(params[:total]),
     category: params[:category],
     description: params[:description],
     completed: params[:completed],
@@ -34,7 +34,14 @@ end
 #end
 
 put '/missions/:id' do
-  Mission.find(params[:id]).set(current: Integer(params[:current]))
+  Mission.find(params[:id]).set(
+    title: params[:title],
+    current: Integer(params[:current]),
+    total: Integer(params[:total]),
+    category: params[:category],
+    description: params[:description],
+    completed: params[:completed],
+  )
   "mission #{params[:id]} updated"
 end
 
