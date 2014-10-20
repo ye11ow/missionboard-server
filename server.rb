@@ -16,7 +16,7 @@ get '/missions/' do
 end
 
 post '/missions/' do
-  m = Mission.create(
+  mission = Mission.create(
     title: params[:title],
     current: Integer(params[:current]),
     total: Integer(params[:total]),
@@ -25,7 +25,7 @@ post '/missions/' do
     completed: params[:completed],
     createdAt: Time.at(Integer(params[:createdAt]) / 1000)
   )
-  "mission #{m.id} created"
+  mission.to_json
 end
 
 #get '/missions/:id' do
@@ -70,11 +70,11 @@ put '/categories/:id' do
 end
 
 post '/categories/' do
-  m = Category.create(
+  category = Category.create(
     title: params[:title],
     filter: "all"
   )
-  "category #{m.id} created"
+  category.to_json
 end
 
 delete '/categories/:id' do
