@@ -6,7 +6,6 @@ require './model/category'
 
 configure do
   set :public_folder, File.dirname(__FILE__) + '/../missionboard-client'
-  p File.dirname(__FILE__) + '../missionboard-client'
   mongo_config = "config/mongoid.yml"
   Mongoid.load!(mongo_config)
 end
@@ -69,11 +68,25 @@ put '/categories/:id' do
   "category #{params[:id]} updated"
 end
 
+put '/categories/:id/orderby' do
+  Category.find(params[:id]).orderby.set(
+    by: params[:by],
+    type: params[:type]
+  )
+  "category #{params[:id]} updated"
+end
+
 post '/categories/' do
   category = Category.create(
     title: params[:title],
     filter: "all"
   )
+
+  category.create_orderby(
+    by: "title",
+    type: "asc"
+  )
+
   category.to_json
 end
 

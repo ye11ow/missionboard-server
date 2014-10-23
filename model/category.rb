@@ -5,6 +5,16 @@ class Category
 
   field :title, type: String
   field :filter, type: String
-  field :orderby, type: String
   field :order, type: Integer
+  embeds_one :orderby
+
+end
+
+class Orderby
+  include Mongoid::Document
+
+  field :by, type: String
+  field :type, type: String
+
+  embedded_in :category
 end
