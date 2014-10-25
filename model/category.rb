@@ -4,8 +4,8 @@ class Category
   include Mongoid::Document
 
   field :title, type: String
-  field :filter, type: String
   field :order, type: Integer
+  field :system, type: Boolean
   embeds_one :orderby
 
 end

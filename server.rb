@@ -62,8 +62,7 @@ end
 
 put '/categories/:id' do
   Category.find(params[:id]).set(
-    title: params[:title],
-    filter: params[:filter]
+    title: params[:title]
   )
   "category #{params[:id]} updated"
 end
@@ -77,9 +76,16 @@ put '/categories/:id/orderby' do
 end
 
 post '/categories/' do
+  lastest_category = Category.last
+  order = 1
+  if (lastest_category) 
+    order = lastest_category.order + 1
+  end
+
   category = Category.create(
     title: params[:title],
-    filter: "all"
+    system: false,
+    order: order
   )
 
   category.create_orderby(
