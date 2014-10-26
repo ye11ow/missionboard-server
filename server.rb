@@ -11,10 +11,14 @@ configure do
 end
 
 get '/missions/' do
+  content_type 'application/json'
+
   Mission.all.entries.to_json
 end
 
 post '/missions/' do
+  content_type 'application/json'
+
   mission = Mission.create(
     title: params[:title],
     current: Integer(params[:current]),
@@ -57,10 +61,12 @@ delete '/missions/:id' do
 end
 
 get '/categories/' do
+  content_type 'application/json'
+
   Category.all.entries.to_json
 end
 
-put '/categories/:id' do
+put '/categories/:id' do  
   Category.find(params[:id]).set(
     title: params[:title]
   )
@@ -76,6 +82,8 @@ put '/categories/:id/orderby' do
 end
 
 post '/categories/' do
+  content_type 'application/json'
+  
   lastest_category = Category.last
   order = 1
   if (lastest_category) 
