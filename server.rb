@@ -54,6 +54,14 @@ put '/missions/:id/doit' do
   "mission #{params[:id]} doit"
 end
 
+put '/missions/:id/finish' do
+  Mission.find(params[:id]).set(
+    current: Integer(params[:current]),
+    completed: true
+  )
+  "mission #{params[:id]} finish"
+end
+
 delete '/missions/:id' do
   mission = Mission.new(id: params[:id])
   mission.delete
@@ -83,7 +91,7 @@ end
 
 post '/categories/' do
   content_type 'application/json'
-  
+
   lastest_category = Category.last
   order = 1
   if (lastest_category) 
