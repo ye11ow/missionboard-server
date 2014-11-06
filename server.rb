@@ -89,6 +89,13 @@ put '/categories/:id/orderby' do
   "category #{params[:id]} updated"
 end
 
+put '/categories/:id/order' do
+  Category.find(params[:id]).set(
+    order: Integer(params[:order])
+  )
+  "category #{params[:id]} updated"
+end
+
 post '/categories/' do
   content_type 'application/json'
 
