@@ -99,16 +99,10 @@ end
 post '/categories/' do
   content_type 'application/json'
 
-  lastest_category = Category.last
-  order = 1
-  if (lastest_category) 
-    order = lastest_category.order + 1
-  end
-
   category = Category.create(
     title: params[:title],
     system: false,
-    order: order
+    order: params[:order],
   )
 
   category.create_orderby(
