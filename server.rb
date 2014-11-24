@@ -56,7 +56,7 @@ put '/missions/:id/doit' do
   if (mission[:total] == current)
     completed = true;
   end
-  
+
   mission.set(
       current: Integer(params[:current]),
       completed: completed
@@ -110,6 +110,7 @@ post '/categories/' do
   content_type 'application/json'
 
   category = Category.create(
+    id: params[:id],
     title: params[:title],
     system: false,
     order: params[:order],

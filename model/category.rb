@@ -2,7 +2,7 @@ require 'mongoid'
 
 class Category
   include Mongoid::Document
-
+  field :_id, type: String
   field :title, type: String
   field :order, type: Integer
   field :system, type: Boolean
