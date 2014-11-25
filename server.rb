@@ -86,22 +86,13 @@ end
 
 put '/categories/:id' do  
   Category.find(params[:id]).set(
-    title: params[:title]
-  )
-  "category #{params[:id]} updated"
-end
-
-put '/categories/:id/orderby' do
-  Category.find(params[:id]).orderby.set(
-    by: params[:by],
-    type: params[:type]
-  )
-  "category #{params[:id]} updated"
-end
-
-put '/categories/:id/order' do
-  Category.find(params[:id]).set(
+    title: params[:title],
     order: Integer(params[:order])
+  )
+
+  Category.find(params[:id]).orderby.set(
+    by: params[:orderby][:by],
+    type: params[:orderby][:type]
   )
   "category #{params[:id]} updated"
 end
