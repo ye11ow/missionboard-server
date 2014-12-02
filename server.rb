@@ -49,27 +49,18 @@ put '/missions/:id' do
   "mission #{params[:id]} updated"
 end
 
-put '/missions/:id/doit' do
+put '/missions/:id/progress' do
   current = Integer(params[:current])
-  completed = false
+  completed = params[:completed]
+  
   mission = Mission.find(params[:id])
-  if (mission[:total] == current)
-    completed = true;
-  end
 
   mission.set(
-      current: Integer(params[:current]),
-      completed: completed
-    )
-  "mission #{params[:id]} doit"
-end
-
-put '/missions/:id/finish' do
-  Mission.find(params[:id]).set(
     current: Integer(params[:current]),
-    completed: true
+    completed: completed
   )
-  "mission #{params[:id]} finish"
+
+  "mission #{params[:id]} progress"
 end
 
 delete '/missions/:id' do
