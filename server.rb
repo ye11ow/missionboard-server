@@ -20,6 +20,7 @@ post '/missions/' do
   content_type 'application/json'
 
   mission = Mission.create(
+    id: params[:id],
     title: params[:title],
     current: Integer(params[:current]),
     total: Integer(params[:total]),
@@ -52,7 +53,7 @@ end
 put '/missions/:id/progress' do
   current = Integer(params[:current])
   completed = params[:completed]
-  
+
   mission = Mission.find(params[:id])
 
   mission.set(
